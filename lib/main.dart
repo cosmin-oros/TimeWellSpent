@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:time_well_spent/settings_page.dart';
+import 'package:time_well_spent/task_page.dart';
+
+import 'goals_page.dart';
 
 void main() {
   runApp(const TimeWellSpent());
@@ -9,9 +13,14 @@ class TimeWellSpent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       title: 'TimeWellSpent',
-      home: HomePage(),
+      home: const HomePage(),
+      routes: {
+        '/task': (context) => const TaskPage(),
+        '/goals': (context) => const GoalsPage(),
+        '/settings': (context) => const SettingsPage(),
+      },
     );
   }
 }
@@ -25,10 +34,35 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('TimeWellSpent'),
       ),
-      body: const Center(
-        child: Text('Welcome to TimeWellSpent'),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            ElevatedButton(
+              child: const Text('Tasks'),
+              onPressed: () {
+                Navigator.pushNamed(context, '/task');
+              },
+            ),
+            const SizedBox(height: 10),
+            ElevatedButton(
+              child: const Text('Goals'),
+              onPressed: () {
+                Navigator.pushNamed(context, '/goals');
+              },
+            ),
+            const SizedBox(height: 10),
+            ElevatedButton(
+              child: const Text('Settings'),
+              onPressed: () {
+                Navigator.pushNamed(context, '/settings');
+              },
+            ),
+          ],
+        ),
       ),
     );
   }
 }
+
 
